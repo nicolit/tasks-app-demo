@@ -1,0 +1,40 @@
+.nav-row {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 15px;
+    align-items: center;
+}
+
+.nav-links-list {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-list li {
+    margin: 0 5px;
+}
+
+.home-button {
+   display: flex;
+}
+
+.nav-list li a {
+    text-decoration: none;
+}
+
+.nav-list li a:hover,
+.logoutButton:hover {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+}

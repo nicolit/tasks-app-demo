@@ -1,8 +1,12 @@
 import React from "react";
 import "./App.css";
-import Header from "../components/Header/Header";
-import Board from "../components/Board/Board";
-import { auth } from './firebase';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Header from "../components/Header";
+import Board from "../components/Board";
+import { auth, database } from "../firebase";
+import Nav from "../components/Nav/index";
+import LogInScreen from "./screens/LogInScreen";
+import SignUpScreen from "./screens/SignUpScreen";
 
 function App() {
   const [loading, setLoading] = React.useState(true);
@@ -12,6 +16,7 @@ function App() {
     auth.onAuthStateChanged((user) => {
       setLoading(false);
       if (user) {
+        console.log(user.uid);
         setUser(user);
       }
     });
@@ -21,13 +26,38 @@ function App() {
     auth.signOut().then(() => setUser(null));
   };
 
-  if (loading) return <div><span>Loading...</span></div>;
+  if (loading)
+    return (
+      <div>
+        <span>Loading...</span>
+      </div>
+    );
+
+  const renderBoards = () => {
+    return (
+      <div className="kanban-container">
+        <Board title={"R&D"} user={user} />
+        <Board title={"Sales"} user={user} />
+      </div>
+    );
+  };
 
   return (
-    <div>
-      <Header></Header>
-      <Board></Board>
-    </div>
+    <Router>
+      <div>
+        <Header></Header>
+        <Nav user={user} handleLogout={handleLogout} />
+        <Switch>
+          <Route path="/sign-up">
+            <SignUpScreen />
+          </Route>
+          <Route path="/log-in">
+            <LogInScreen />
+          </Route>
+          <Route path="/">{user ? renderBoards() : <div></div>}</Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

@@ -11,3 +11,93 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.kanban-container {
+  background-color: rgba(0, 0, 0, 0.096);
+  display: block;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.board-container {
+  display: flex;
+  flex: 1;
+  align-content: center;
+  justify-content: center;
+  margin-top: 20px;
+  flex-direction: column;
+}
+
+.board-title-container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-content: center;
+  justify-content: center;
+}
+
+.board-title {
+  text-align: left;
+  margin: 5px 5px;
+  font-size: 18px;
+  color: rgb(8, 8, 8);
+  font-weight: bold;
+}
+
+.board-lanes-container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.lane-container {
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+  /* background-color: rgba(0, 0, 0, 0.2) ; */
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lane-title {
+  text-align: left;
+  margin: 10px 5px;
+  font-size: 16px;
+  color: rgb(27, 94, 238);
+  font-weight: bold;
+}
+
+.lane-tasks-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.lane-bottom{
+  display: flex;
+  flex-direction: column;
+  bottom: 0px;
+}
+
+.card-container {
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 5px 5px;
+  margin: 10px 5px;
+  font-size: 12px;
+  background-color: rgba(111, 180, 240, 0.2);
+  text-align: left;
+}
+
+.card-container:hover {
+  cursor: pointer;
+}
