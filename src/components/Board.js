@@ -5,10 +5,10 @@ import { LANE_TYPE } from "../utils/constans";
 import Lane from "./Lane";
 import functions from "firebase-functions";
 import "../index.css";
+import { getNowServerFormat } from "../utils/utils";
 
 const Board = ({ title, user }) => {
   const [loading, setLoading] = React.useState(true);
-  const [data, setData] = React.useState({});
   const dbRef = database.ref(`/boards/boards/${title}`);
   const dbTasksRef = dbRef.child("tasks");
   const [tasks, setTasks] = React.useState({});
@@ -17,9 +17,6 @@ const Board = ({ title, user }) => {
     dbRef.once("value").then((snapshot) => {
       setLoading(false);
       if (snapshot.exists()) {
-        //console.log(snapshot.val());
-        //setData(snapshot.val());
-
         dbTasksRef.once("value").then((snapshot) => {
           if (snapshot.exists()) {
             console.log(snapshot.val());
@@ -47,22 +44,50 @@ const Board = ({ title, user }) => {
       });
   };
 
+  const updateTask = (taskId, description) => {
+    let taskRef = dbTasksRef.child(taskId);
+    if (description && description !== "") {
+      let updateProps = { description, date: getNowServerFormat() };
+      taskRef.update(updateProps);
+      setTasks((prevTasks) => {
+        return({...prevTasks, [taskId]: {...prevTasks[taskId], ...updateProps }});
+      });
+
+    }
+  };
+
+  const moveTask = (taskId, status) => {
+    let taskRef = dbTasksRef.child(taskId);
+    let updateProps = { status };
+    taskRef.update(updateProps);
+    setTasks((prevTasks) => {
+      return({...prevTasks, [taskId]: {...prevTasks[taskId], ...updateProps }});
+    });
+  }
+
+
+
   const addTask = (type, description) => {
     if (description !== "") {
-      let now = new Date();
-      dbTasksRef.push().set(
-        {
-          description,
-          status: type.status,
-          date: now.toTimeString(),
-          user: user.uid,
-          email: user.email,
-        },
+      let newTask = {
+        description,
+        status: type.status,
+        date: getNowServerFormat(),
+        user: user.uid,
+        email: user.email,
+      };
+      let taskRef = dbTasksRef.push();
+      let taskId = taskRef.getKey();
+      taskRef.set(
+        {...newTask, id: taskId},
         (error) => {
           if (error) {
-            alert("Data could not be saved." + error);
+            console.log("Data could not be saved." + error);
           } else {
-            alert("Data saved successfully.");
+            console.log("Data saved successfully.");
+            setTasks((prevTasks) => {
+              return({...prevTasks, [taskId]: {...newTask, id: taskId}});
+            });
           }
         }
       );
@@ -88,7 +113,7 @@ const Board = ({ title, user }) => {
     const laneTasks = {};
     for (let key in tasks) {
       if (tasks[key].status === status) {
-        laneTasks[key] = tasks[key];
+        laneTasks[key] = {...tasks[key], id: key};
       }
     }
     return laneTasks;
@@ -104,33 +129,37 @@ const Board = ({ title, user }) => {
           dbTasksRef={dbTasksRef}
           type={LANE_TYPE.CANDIDATES}
           tasks={filterTasks(LANE_TYPE.CANDIDATES.status)}
-          user={user}
           addTask={addTask}
           removeTask={removeTask}
+          updateTask={updateTask}
+          moveTask={moveTask}
         />
         <Lane
           dbTasksRef={dbTasksRef}
           type={LANE_TYPE.IN_PROGRESS}
           tasks={filterTasks(LANE_TYPE.IN_PROGRESS.status)}
-          user={user}
           addTask={addTask}
           removeTask={removeTask}
+          updateTask={updateTask}
+          moveTask={moveTask}
         />
         <Lane
           dbTasksRef={dbTasksRef}
           type={LANE_TYPE.QA}
           tasks={filterTasks(LANE_TYPE.QA.status)}
-          user={user}
           addTask={addTask}
           removeTask={removeTask}
+          updateTask={updateTask}
+          moveTask={moveTask}
         />
         <Lane
           dbTasksRef={dbTasksRef}
           type={LANE_TYPE.COMPLETED}
           tasks={filterTasks(LANE_TYPE.COMPLETED.status)}
-          user={user}
           addTask={addTask}
           removeTask={removeTask}
+          updateTask={updateTask}
+          moveTask={moveTask}
         />
       </div>
     </div>

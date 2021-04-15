@@ -12,9 +12,16 @@ code {
     monospace;
 }
 
-.kanban-container {
+.screen-container {
   background-color: rgba(0, 0, 0, 0.096);
-  display: block;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.kanban-container {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -82,10 +89,10 @@ code {
   flex: 1;
 }
 
-.lane-bottom{
+.lane-task-form{
   display: flex;
   flex-direction: column;
-  bottom: 0px;
+  margin-bottom: 10px;
 }
 
 .card-container {
@@ -96,6 +103,32 @@ code {
   font-size: 12px;
   background-color: rgba(111, 180, 240, 0.2);
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.task-desc {
+  text-align: left;
+  margin: 5px 5px;
+  font-size: 14px;
+  color: rgb(46, 47, 51);
+}
+
+.task-details {
+  text-align: left;
+  margin: 2px 2px;
+  font-size: 14px;
+  color: rgb(5, 34, 92);
+}
+
+.task-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 
 .card-container:hover {

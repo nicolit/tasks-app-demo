@@ -4,36 +4,43 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { makeStyles } from "@material-ui/core/styles";
+import { convertServerToShortDate } from "../utils/utils";
+import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-  extendedIcon: {
-    marginRight: theme.spacing(1),
-  },
-}));
-
-const Task = ({ id, task, updateTask, removeTask }) => {
+const Task = ({ id, task, editTask, removeTask, moveTask }) => {
   const handleEdit = () => {
-    let desc = "new update desc";
-    updateTask(id, desc);
+    editTask(task);
   };
-
-  const classes = useStyles();
 
   return (
     <div className="card-container" onDoubleClick={handleEdit}>
-      {task.description}
-      {task.date}
-      {task.email}
-      <IconButton
-        aria-label="delete"
-        className={classes.margin}
-        onClick={() => removeTask(id)}
-      >
-        <DeleteIcon fontSize="small" />
-      </IconButton>
+      <div className={"task-desc"}>{task.description}</div>
+      <div className={"task-details"}>
+        {convertServerToShortDate(task.date)}
+      </div>
+      <div className={"task-details"}>{task.email}</div>
+      <div className={"task-buttons"}>
+        {task.status > 0 ? (
+          <ArrowBackIos
+            fontSize="small"
+            onClick={() => moveTask(id, task.status - 1)}
+          />
+        ) : (
+          <div />
+        )}
+
+        <DeleteIcon fontSize="small" onClick={() => removeTask(id)} />
+
+        {task.status < 3 ? (
+          <ArrowForwardIosIcon
+            fontSize="small"
+            onClick={() => moveTask(id, task.status + 1)}
+          />
+        ) : (
+          <div />
+        )}
+      </div>
     </div>
   );
 };

@@ -13,10 +13,6 @@
     flex-direction: row;
 }
 
-.nav-list li {
-    margin: 0 5px;
-}
-
 .home-button {
    display: flex;
 }

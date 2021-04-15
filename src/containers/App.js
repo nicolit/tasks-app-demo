@@ -44,7 +44,7 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div className={"screen-container"}>
         <Header></Header>
         <Nav user={user} handleLogout={handleLogout} />
         <Switch>
