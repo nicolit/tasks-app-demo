@@ -1,7 +1,7 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import styles from "./email-password-form.module.css";
+import "../index.css";
 
 const EmailPasswordForm = ({handleSubmit,
     email,
@@ -12,7 +12,7 @@ const EmailPasswordForm = ({handleSubmit,
 
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
+    <form onSubmit={handleSubmit} className={"form"}>
       <TextField
         label="Email"
         name="email"
@@ -27,14 +27,15 @@ const EmailPasswordForm = ({handleSubmit,
         type="password"
         value={password}
         onChange={handlePassword}
-        className={styles.input}
+        className={"form-input"}
       />
       {error && <span>{error}</span>}
       <Button
         onClick={handleSubmit}
         variant="contained"
         color="primary"
-        className={styles.button}
+        classes={{root: "form-submit-button", label: "form-submit-button-label"}}
+        style={{marginTop: 20, marginBottom: 20}}
       >
           {buttonText}
       </Button>
