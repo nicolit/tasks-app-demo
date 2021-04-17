@@ -20,6 +20,7 @@ const EmailPasswordForm = ({handleSubmit,
         value={email}
         onChange={handleEmail}
         className={'input'}
+        required
       />
       <TextField
         label="Password"
@@ -28,6 +29,7 @@ const EmailPasswordForm = ({handleSubmit,
         value={password}
         onChange={handlePassword}
         className={"form-input"}
+        required
       />
       {error && <span>{error}</span>}
       <Button

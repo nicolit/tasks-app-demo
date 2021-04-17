@@ -5,8 +5,8 @@ import Header from "../components/Header";
 import Board from "../components/Board";
 import { auth, database } from "../firebase";
 import Nav from "../components/Nav";
-import LogInScreen from "./screens/LogInScreen";
-import SignUpScreen from "./screens/SignUpScreen";
+import LogInPage from "./pages/LogInPage";
+import SignUpPage from "./pages/SignUpPage";
 
 function App() {
   const [loading, setLoading] = React.useState(true);
@@ -49,10 +49,10 @@ function App() {
         <Nav user={user} handleLogout={handleLogout} />
         <Switch>
           <Route path="/sign-up">
-            <SignUpScreen />
+            <SignUpPage />
           </Route>
           <Route path="/log-in">
-            <LogInScreen />
+            <LogInPage />
           </Route>
           <Route path="/">{user ? renderBoards() : <div></div>}</Route>
         </Switch>

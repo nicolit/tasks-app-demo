@@ -70,3 +70,54 @@ export const dateServerConverter = dateTime => {
     let serverFormat = datetimeFormat.format(FORMATS["serverFormat"]);
     return serverFormat;
   };
+
+export const isEmptyString = (string) => {
+    if (string.trim() === '') return true;
+    else return false;
+  };
+
+export const isValidEmail = (email) => {
+    const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (email.match(emailRegEx)) return true;
+    return false;
+  };
+
+export const validateEmail = (email) => {
+  let error = null;
+  if (isEmptyString(email)) {
+    error = 'Email is required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+    error = 'Invalid email address.';
+  }
+  return error;
+}
+
+const validatePassword = values => {
+  let error = null;
+  const passwordRegex = /(?=.*[0-9])/;
+  if (isEmptyString(values)) {
+    error = "password is required";
+  } else if (values.length < 6) {
+    error = "*Password must be 6 characters long.";
+  } else if (!passwordRegex.test(values)) {
+    error = "Invalid password. Must contain at least 6 digits.";
+  }
+  return error;
+};
+
+
+  export const validateLoginData = (data) => {
+    let errors = {};
+    let emailError = validateEmail(data.email);
+    let passError = validatePassword(data.password);
+    if (emailError) errors.email = emailError;
+    if (passError) errors.password = passError;
+  
+    return {
+      errors,
+      valid: Object.keys(errors).length === 0 ? true : false,
+      errorMsg: Object.values(errors).join('\n')
+    };
+  };
+
+  

@@ -3,10 +3,13 @@ import { useHistory } from "react-router-dom";
 import { auth } from "../../firebase";
 import EmailPasswordForm from "../../components/EmailPasswordForm";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {validateLoginData } from "../../utils/utils";
 
-const LogInScreen = () => {
+const LogInPage = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [validError, setValidError] = React.useState("");
+
 
   const [
     signInWithEmailAndPassword,
@@ -23,6 +26,15 @@ const LogInScreen = () => {
     setPassword(e.target.value);
   };
 
+  const handleLogin = () => {
+    let res = validateLoginData({email, password});
+    if (res.valid){
+      signInWithEmailAndPassword(email, password);
+    } else {
+      setValidError(res.errorMsg);
+    }
+  }
+
   if (user) {
     return (
       <div>
@@ -31,10 +43,10 @@ const LogInScreen = () => {
     );
   }
 
-  if (error) {
+  if (validError || error) {
     return(
       <div className="sign-up-error-container">
-      <div className="sign-up-error"><p>Error: {error.message}</p></div>
+      <div className="sign-up-error"><p>Error: {validError ? validError : error.message}</p></div>
       
     </div>
     );
@@ -44,7 +56,7 @@ const LogInScreen = () => {
     <div className="sign-up-screen">
     {loading && <p>Loading...</p>}
       <EmailPasswordForm
-        handleSubmit={() => signInWithEmailAndPassword(email, password)}
+        handleSubmit={handleLogin}
         email={email}
         handleEmail={handleEmail}
         password={password}
@@ -56,4 +68,4 @@ const LogInScreen = () => {
   );
 };
 
-export default LogInScreen;
+export default LogInPage;
