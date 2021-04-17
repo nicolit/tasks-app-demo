@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "../components/Header";
 import Board from "../components/Board";
 import { auth, database } from "../firebase";
-import Nav from "../components/Nav/index";
+import Nav from "../components/Nav";
 import LogInScreen from "./screens/LogInScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 

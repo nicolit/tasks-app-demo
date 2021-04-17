@@ -1,30 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./nav.module.css";
+import styles from "./nav.module.css";
 import Button from "@material-ui/core/Button";
 
 
 const Nav = ({ user, handleLogout }) => {
 
   return (
-    <div className={"nav-row"}>
-      <div className={"nav-links-list"}>
-        <div className={"home-button"}>
+    <div className={styles.navRow}>
+      <div className={styles.navLinksList}>
+        <li className={styles.linkButton}>
           <Link to="/">Home</Link>
-        </div>
+        </li>
         {!user && (
-          <div >
+          <li className={styles.linkButton}>
             <Link to="/sign-up">Sign Up</Link>
-          </div>
+          </li>
         )}
         {!user && (
-          <li>
+          <li className={styles.linkButton}>
             <Link to="/log-in">Log In</Link>
           </li>
         )}
       </div>
       {user && (
-        <Button className={"logout-button"} onClick={handleLogout} variant="contained" color="primary">
+        <Button className={styles.logoutButton} onClick={handleLogout} variant="contained" color="primary">
           Log Out
         </Button>
       )}

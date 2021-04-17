@@ -27,14 +27,14 @@ const EmailPasswordForm = ({handleSubmit,
         type="password"
         value={password}
         onChange={handlePassword}
-        className={'input'}
+        className={styles.input}
       />
       {error && <span>{error}</span>}
       <Button
         onClick={handleSubmit}
         variant="contained"
         color="primary"
-        className={'button'}
+        className={styles.button}
       >
           {buttonText}
       </Button>
