@@ -1,8 +1,6 @@
 import React from "react";
 import { auth } from "../../firebase";
 import EmailPasswordForm from "../../components/EmailPasswordForm";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { validateLoginData } from "../../utils/utils";
 import { useHistory } from "react-router-dom";
 
 const SignUpPage = () => {
@@ -10,7 +8,6 @@ const SignUpPage = () => {
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
   const history = useHistory();
-
 
   const handleEmail = (value) => {
     setEmail(value);
@@ -33,7 +30,6 @@ const SignUpPage = () => {
       });
   };
 
-
   if (error) {
     return (
       <div className="sign-up-error-container">
@@ -46,7 +42,6 @@ const SignUpPage = () => {
 
   return (
     <div className="sign-up-screen">
-      
       <EmailPasswordForm
         handleSubmit={handleSignup}
         email={email}

@@ -2,15 +2,12 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { auth } from "../../firebase";
 import EmailPasswordForm from "../../components/EmailPasswordForm";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { validateLoginData } from "../../utils/utils";
 
 const LogInPage = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
   const history = useHistory();
-
 
   const handleEmail = (value) => {
     setEmail(value);
