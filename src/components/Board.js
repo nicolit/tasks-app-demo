@@ -3,7 +3,6 @@ import React from "react";
 import { database } from "../firebase";
 import { LANE_TYPE } from "../utils/constans";
 import Lane from "./Lane";
-import functions from "firebase-functions";
 import "../index.css";
 import { getNowServerFormat } from "../utils/utils";
 
