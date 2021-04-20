@@ -5,103 +5,27 @@ import { LANE_TYPE } from "../utils/constans";
 import Lane from "./Lane";
 import "../index.css";
 import { getNowServerFormat } from "../utils/utils";
+import { getTasks, removeTask, addTask, updateTask } from "../utils/TaskFunctions";
 
 const Board = ({ board, user }) => {
   const [loading, setLoading] = React.useState(true);
   const [tasks, setTasks] = React.useState([]);
   const [error, setError] = React.useState("");
-
-  const getTasks = () => {
-    setLoading(true);
-    if (board) {
-      return axios
-        .get(
-          `https://us-central1-kanban-board-875ad.cloudfunctions.net/getTasks?board=${board}`
-        )
-        .then((response) => {
-          if (response.data.tasks){
-            console.log(`getTasks: for board: ${board} success. num_tasks: ${response.data.num_tasks}`);
-            setTasks(response.data.tasks);
-          }
-          
-        })
-        .catch(function (error) {
-          setError(error);
-        })
-        .finally(() => setLoading(false));
-    } else {
-      setLoading(false);
-      setError("Cannot get board tasks: missing board name.");
-    }
-  };
-
+  
   React.useEffect(() => {
-    getTasks();
+    getTasks(setError, setLoading, setTasks, { board});
   }, []);
 
-  const removeTask = (id) => {
-    setLoading(true);
-    return axios
-      .delete(
-        `https://us-central1-kanban-board-875ad.cloudfunctions.net/deleteTask?id=${id}&board=${board}`
-      )
-      .then((response) => {
-        if (response.data.tasks){
-          console.log(`removeTask: for board: ${board} success for task id ${id} num_tasks: ${response.data.num_tasks}`);
-          setTasks(response.data.tasks);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-      .finally(() => setLoading(false));
+  const _addTask = (type, description) => {
+    addTask(setError, setLoading, setTasks, { description, user, board, status: type.status});
   };
 
-  const updateTask = (item) => {
-    item['date'] = getNowServerFormat();
-    setLoading(true);
-    axios
-      .post(
-        "https://us-central1-kanban-board-875ad.cloudfunctions.net/updateTask",
-        { item, board }
-      )
-      .then((response) => {
-        if (response.data.tasks){
-          console.log(`updateTask: for board: ${board} success for task id ${item.id}. num_tasks: ${response.data.num_tasks}`);
-          setTasks(response.data.tasks);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-      .finally(() => setLoading(false));
+  const _updateTask = (item) => {
+    updateTask(setError, setLoading, setTasks, { item, board });
   };
 
-  const addTask = (type, description) => {
-    let item = {
-      description,
-      status: type.status,
-      date: getNowServerFormat(),
-      user: user.uid,
-      email: user.email,
-    };
-    setLoading(true);
-
-    axios
-      .post(
-        "https://us-central1-kanban-board-875ad.cloudfunctions.net/addTask",
-        { item, board }
-      )
-      .then((response) => {
-        if (response.data.tasks){
-          console.log(`addTask: for board: ${board} success. num_tasks: ${response.data.num_tasks}`);
-          setTasks(response.data.tasks);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-      .finally(() => setLoading(false));
+  const _removeTask = (id) => {
+    removeTask(setError, setLoading, setTasks, { board, id});
   };
 
   const filterTasks = (status) => {
@@ -127,9 +51,9 @@ const Board = ({ board, user }) => {
         key={key}
         type={LANE_TYPE[key]}
         tasks={filterTasks(LANE_TYPE[key].status)}
-        addTask={addTask}
-        removeTask={removeTask}
-        updateTask={updateTask}
+        addTask={_addTask}
+        removeTask={_removeTask}
+        updateTask={_updateTask}
       />
     ));
   };
