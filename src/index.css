@@ -62,6 +62,14 @@ code {
   width: 100%;
 }
 
+.board-error-container{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  align-content: center;
+  justify-content: center;
+}
+
 .lane-container {
   border-radius: 4px;
   padding: 10px;

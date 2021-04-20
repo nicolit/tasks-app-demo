@@ -16,7 +16,6 @@ function App() {
     auth.onAuthStateChanged((user) => {
       setLoading(false);
       if (user) {
-        console.log(user.uid);
         setUser(user);
       }
     });
@@ -36,8 +35,8 @@ function App() {
   const renderBoards = () => {
     return (
       <div className="kanban-container">
-        <Board title={"R&D"} user={user} />
-        <Board title={"Sales"} user={user} />
+        <Board board={"R&D"} user={user} />
+        <Board board={"Sales"} user={user} />
       </div>
     );
   };

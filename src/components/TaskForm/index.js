@@ -20,7 +20,7 @@ const TaskForm = ({isVisible, handleClose, addTask, updateTask, task, type}) => 
   
       if (description !== '') {
         if (task && task.id){
-          updateTask(task.id, description);
+          updateTask({id: task.id, description});
         } else {
           addTask(type, description);
         }

@@ -6,7 +6,7 @@ import { convertServerToShortDate } from "../utils/utils";
 import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
-const Task = ({ id, task, editTask, removeTask, moveTask }) => {
+const Task = ({ task, editTask, removeTask, updateTask }) => {
   const handleEdit = () => {
     editTask(task);
   };
@@ -15,25 +15,25 @@ const Task = ({ id, task, editTask, removeTask, moveTask }) => {
     <div className="card-container" onDoubleClick={handleEdit}>
       <div className={"task-desc"}>{task.description}</div>
       <div className={"task-details"}>
-        {convertServerToShortDate(task.date)}
+        {task.date && convertServerToShortDate(task.date)}
       </div>
       <div className={"task-details"}>{task.email}</div>
       <div className={"task-buttons"}>
         {task.status > 0 ? (
           <ArrowBackIos
             fontSize="small"
-            onClick={() => moveTask(id, task.status - 1)}
+            onClick={() => updateTask({id: task.id, status: task.status - 1})}
           />
         ) : (
           <div />
         )}
 
-        <DeleteIcon fontSize="small" onClick={() => removeTask(id)} />
+        <DeleteIcon fontSize="small" onClick={() => removeTask(task.id)} />
 
         {task.status < 3 ? (
           <ArrowForwardIosIcon
             fontSize="small"
-            onClick={() => moveTask(id, task.status + 1)}
+            onClick={() => updateTask({id: task.id, status: task.status + 1})}
           />
         ) : (
           <div />

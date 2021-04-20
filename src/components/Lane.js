@@ -4,7 +4,7 @@ import "../index.css";
 import Button from "@material-ui/core/Button";
 import TaskForm from "../components/TaskForm";
 
-const Lane = ({ dbTasksRef, type, tasks, addTask, removeTask, updateTask, moveTask }) => {
+const Lane = ({ type, tasks, addTask, removeTask, updateTask }) => {
   const [show, setShow] = useState(false);
   const [task, setTask] = useState(null);
 
@@ -17,14 +17,13 @@ const Lane = ({ dbTasksRef, type, tasks, addTask, removeTask, updateTask, moveTa
 
 
   const renderTasks = () => {
-    return Object.keys(tasks).map((item) => (
+    return tasks.map((item) => (
       <Task
-        key={item}
-        id={item}
-        task={tasks[item]}
+        key={item.id}
+        task={item}
         editTask={handleShow}
         removeTask={removeTask}
-        moveTask={moveTask}
+        updateTask={updateTask}
       />
     ));
   };
