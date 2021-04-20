@@ -1,10 +1,7 @@
 import React from "react";
-import axios from "axios";
-import { database } from "../firebase";
 import { LANE_TYPE } from "../utils/constans";
 import Lane from "./Lane";
 import "../index.css";
-import { getNowServerFormat } from "../utils/utils";
 import { getTasks, removeTask, addTask, updateTask } from "../utils/TaskFunctions";
 
 const Board = ({ board, user }) => {

@@ -1,7 +1,6 @@
 import React from "react";
 import "../index.css";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { makeStyles } from "@material-ui/core/styles";
 import { convertServerToShortDate } from "../utils/utils";
 import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
