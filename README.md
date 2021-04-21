@@ -2,7 +2,8 @@
 
 Basic demo of kanban board using react, firebase and hooks.
 
-Demo: https://kanban-board-875ad.web.app/
+Demo: https://kanban-board-875ad.web.app/ <br>
+server repo: https://github.com/nicolit/tasks-app-server
 
 Kanbab Board demo requires **React 16.8.0 or later** and **Firebase v8.0.0 or later**.
 This project assumes that you’re using the [npm](https://npmjs.com) or [yarn](https://yarnpkg.com/) package managers with a module bundler like [Webpack](https://webpack.js.org/)
