@@ -2,16 +2,14 @@
 
   <p align="center">
     Basic demo of kanban board using react, firebase and hooks.
-    <br />
     <a href="https://kanban-board-875ad.web.app/">Live Demo</a>
     ·
     <a href="https://github.com/nicolit/tasks-app-demo/issues">Report Bug</a>
     ·
-    <a href="https://github.com/singhkshitij/kanbang/issues">Request Feature</a>
+    <a href="https://github.com/nicolit/tasks-app-demo/issues">Request Feature</a>
       ·
     <a href="https://github.com/nicolit/tasks-app-server">Server Repo</a>
   </p>
-<br>
 
 ### Built with :
 Kanbab Board demo requires **React 16.8.0 or later** and **Firebase v8.0.0 or later**.
@@ -20,7 +18,6 @@ This project assumes that you’re using the [npm](https://npmjs.com) or [yarn](
  - [REACTJS](https://reactjs.org/)
  - [Firebase](https://firebase.google.com/)
  - This project was bootstrapped with [Create React App](https://www.npmjs.com/create-react-app)
-<br>
 
 ### Prerequisites
 
@@ -45,7 +42,7 @@ npm i create-react-app
 ```sh
 npm install
 ```
-3. Import project in some editor and create a config.js file. Replace all the `<YOUR_API_KEY>` with you firebase api keys.
+3. Import project in some editor like VSCode and create a config.js file. Replace all the `<YOUR_API_KEY>` with you firebase api keys.
 ```sh
     var config = {
       API_KEY : <YOUR_API_KEY>,
@@ -59,13 +56,6 @@ npm install
 ```
   
  4. Run `npm start`.
-
-[Available Scripts](#available-scripts)
-  - [npm start](#npm-start)
-  - [npm test](#npm-test)
-  - [npm run build](#npm-run-build)
-  - [npm run eject](#npm-run-eject)
-
 
 ### Available Scripts
 
@@ -84,16 +74,12 @@ Launches the test runner in the interactive watch mode.<br>
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes so it's ready for deployment.<br>
+The build is minified and the filenames include the hashes so it's ready for deployment.
 
 #### `npm run eject`
 
 If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
 Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 ### What to expect in future ?
 
@@ -103,7 +89,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
   - Allow authentication with Google or other sign-in providers
   - Better styling, custom loading spinner
   - Any suggestion is heartly welcomed
-  <br>
   
 ### License
 - See [LICENSE](/LICENSE)
