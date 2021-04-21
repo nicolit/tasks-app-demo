@@ -20,7 +20,7 @@ const SignUpPage = () => {
   const handleSignup = (e) => {
     e.preventDefault();
     auth
-      .signInWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, password)
       .then((res) => {
         history.push("/");
         console.log(res);
