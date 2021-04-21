@@ -1,7 +1,6 @@
 ## Basic Kanban Board 
-
+<h3 align="center">Basic kanban board using react, firebase and hooks</h3>
   <p align="center">
-    Basic demo of kanban board using react, firebase and hooks.<br>
     <a href="https://kanban-board-875ad.web.app/">Live Demo</a>
     ·
     <a href="https://github.com/nicolit/tasks-app-demo/issues">Report Bug</a>
