@@ -2,7 +2,8 @@ import React from "react";
 import { LANE_TYPE } from "../utils/constans";
 import Lane from "./Lane";
 import "../index.css";
-import { getTasks, removeTask, addTask, updateTask } from "../utils/TaskFunctions";
+import { getTasks } from "../utils/TaskFunctions";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Board = ({ board, user }) => {
   const [loading, setLoading] = React.useState(true);
@@ -13,17 +14,9 @@ const Board = ({ board, user }) => {
     getTasks(setError, setLoading, setTasks, { board});
   }, []);
 
-  const _addTask = (type, description) => {
-    addTask(setError, setLoading, setTasks, { description, user, board, status: type.status});
-  };
-
-  const _updateTask = (item) => {
-    updateTask(setError, setLoading, setTasks, { item, board });
-  };
-
-  const _removeTask = (id) => {
-    removeTask(setError, setLoading, setTasks, { board, id});
-  };
+  const updateTasks = (tasks) => {
+    setTasks(tasks);
+  }
 
   const filterTasks = (status) => {
     const laneTasks = [];
@@ -35,12 +28,13 @@ const Board = ({ board, user }) => {
     return laneTasks;
   };
 
-  if (loading)
+  if (loading) {
     return (
       <div>
-        <span>Loading...</span>
+        <CircularProgress color="secondary" />
       </div>
     );
+  }
 
   const getLanes = () => {
     return Object.keys(LANE_TYPE).map((key) => (
@@ -48,9 +42,9 @@ const Board = ({ board, user }) => {
         key={key}
         type={LANE_TYPE[key]}
         tasks={filterTasks(LANE_TYPE[key].status)}
-        addTask={_addTask}
-        removeTask={_removeTask}
-        updateTask={_updateTask}
+        board={board}
+        user={user}
+        setTasks={updateTasks}
       />
     ));
   };

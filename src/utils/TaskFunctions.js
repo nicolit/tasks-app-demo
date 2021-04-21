@@ -4,9 +4,10 @@ import { getNowServerFormat } from "./utils";
 export const getTasks = (setError, setLoading, setTasks, params) => {
   const { board } = params;
   setLoading(true);
+  let validBoard =  encodeURIComponent(board);
   return axios
     .get(
-      `https://us-central1-kanban-board-875ad.cloudfunctions.net/getTasks?board=${board}`
+      `https://us-central1-kanban-board-875ad.cloudfunctions.net/getTasks?board=${validBoard}`
     )
     .then((response) => {
       if (response.data.tasks) {
@@ -25,9 +26,10 @@ export const getTasks = (setError, setLoading, setTasks, params) => {
 export const removeTask = (setError, setLoading, setTasks, params) => {
   const { id, board } = params;
   setLoading(true);
+  let validBoard =  encodeURIComponent(board);
   return axios
     .delete(
-      `https://us-central1-kanban-board-875ad.cloudfunctions.net/deleteTask?id=${id}&board=${board}`
+      `https://us-central1-kanban-board-875ad.cloudfunctions.net/deleteTask?id=${id}&board=${validBoard}`
     )
     .then((response) => {
       if (response.data.tasks) {
