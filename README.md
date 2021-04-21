@@ -1,7 +1,7 @@
-## Basic kanban board 
+## Basic Kanban Board 
 
   <p align="center">
-    Basic demo of kanban board using react, firebase and hooks.
+    Basic demo of kanban board using react, firebase and hooks.<br>
     <a href="https://kanban-board-875ad.web.app/">Live Demo</a>
     ·
     <a href="https://github.com/nicolit/tasks-app-demo/issues">Report Bug</a>
@@ -13,7 +13,7 @@
 
 ### Built with :
 Kanbab Board demo requires **React 16.8.0 or later** and **Firebase v8.0.0 or later**.
-This project assumes that you’re using the [npm](https://npmjs.com) or [yarn](https://yarnpkg.com/) package managers with a module bundler like [Webpack](https://webpack.js.org/)
+This project assumes that you’re using the [npm](https://npmjs.com) or [yarn](https://yarnpkg.com/) package managers with a module bundler like [Webpack](https://webpack.js.org/).
 <br>
  - [REACTJS](https://reactjs.org/)
  - [Firebase](https://firebase.google.com/)
@@ -42,7 +42,7 @@ npm i create-react-app
 ```sh
 npm install
 ```
-3. Import project in some editor like VSCode and create a config.js file. Replace all the `<YOUR_API_KEY>` with you firebase api keys.
+3. Import project in some editor like VSCode and create a config.js file. Replace all the `<YOUR_API_KEY>` with you firebase API keys.
 ```sh
     var config = {
       API_KEY : <YOUR_API_KEY>,
