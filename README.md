@@ -33,9 +33,9 @@ npm i create-react-app
 ### Installation
 
 1. Clone the repo
-      ```sh
-      git clone https://github.com/nicolit/tasks-app-demo.git
-      ```
+  ```sh
+  git clone https://github.com/nicolit/tasks-app-demo.git
+  ```
 
 2. Install NPM packages
 ```sh
